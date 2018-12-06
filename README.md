@@ -7,7 +7,7 @@ comfortably tying actors to receivers through data.
 
 ## Features
 
-NONE
+data driven
 
 ## Install
 
