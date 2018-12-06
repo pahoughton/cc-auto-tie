@@ -2,7 +2,7 @@
 
 [![Test Build Status](https://travis-ci.org/pahoughton/cc-auto-tie.png)](https://travis-ci.org/pahoughton/cc-auto-tie)
 
-comfortably tying actors to connectors through data.
+comfortably tying actors to receivers through data.
 
 
 ## Features
@@ -23,7 +23,7 @@ You wouldn't want to.
 
 ## Licenses
 
-(cc) <paul4hough@gmail.com>
+2018-12-05 (cc) <paul4hough@gmail.com>
 
 [![LICENSE](http://i.creativecommons.org/l/by/3.0/88x31.png)](http://creativecommons.org/licenses/by/3.0/)
 
