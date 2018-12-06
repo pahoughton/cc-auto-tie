@@ -1,0 +1,46 @@
+# 2018-12-05 (cc) <paul4hough@gmail.com>
+#
+---
+namespace: cc-auto-tie
+
+config:
+  - init: load from yaml
+error:
+
+telometer: telemetry data to sink
+
+receiver: receive events
+
+knot: tie receiver(s) to actor(s)
+  - receiver(s)
+  - actor(s)
+
+actor: perform event driven action
+  - init: configure actor from yaml
+  - config:
+    - return config data
+  - do:
+    - the action
+    - params:
+      - event
+      - details
+
+rest actor:
+
+puppet actor:
+
+ansible actor:
+
+shell actor:
+
+rest receiver:
+
+shell receiver:
+
+mail receiver:
+
+splunk reciever:
+
+soap receiver:
+
+mvs receiver:
