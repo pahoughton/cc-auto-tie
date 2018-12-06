@@ -4,21 +4,39 @@
 namespace: cc-auto-tie
 
 config:
-  - init: load from yaml
+  - init: configure from yaml
+  - values
+
+exception:
+
 error:
+  - config
 
-telometer: telemetry data to sink
+logger:
+  - config
 
-receiver: receive events
+telometer:
+  - config
+  - collect
+  - send
+
+service:
+  - config
+  - listen
+  - dispatch receiver
+
+receiver:
+  - config
+  - accept
+  - process
 
 knot: tie receiver(s) to actor(s)
+  - config
   - receiver(s)
   - actor(s)
 
 actor: perform event driven action
-  - init: configure actor from yaml
-  - config:
-    - return config data
+  - config
   - do:
     - the action
     - params:
