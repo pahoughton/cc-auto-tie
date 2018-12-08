@@ -4,10 +4,18 @@
 
 comfortably tying actors to receivers through data.
 
+## Code
+go
+
+## data
+yaml:
+- config
+- api payload
+- everything
 
 ## Features
 
-NONE
+Fun to play with
 
 ## Install
 
@@ -24,5 +32,6 @@ You wouldn't want to.
 ## Licenses
 
 2018-12-05 (cc) <paul4hough@gmail.com>
+
 
 [![LICENSE](http://i.creativecommons.org/l/by/3.0/88x31.png)](http://creativecommons.org/licenses/by/3.0/)
