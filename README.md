@@ -16,6 +16,8 @@ yaml:
 ## Features
 
 Fun to play with
+data driven
+object oriented
 
 ## Install
 
