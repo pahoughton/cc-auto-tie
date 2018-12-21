@@ -14,6 +14,10 @@ import (
 func alertHandler(
 	w http.ResponseWriter,
 	r *http.Request ) {
+
+	// inc metrics counter
+	alertsRecvd.Inc()
+
 	b, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		panic(err)
