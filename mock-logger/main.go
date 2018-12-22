@@ -28,7 +28,7 @@ var (
 
 	logfn = app.Flag("log-fn","log filename").
 		Short('f').
-		Default("logger.log").
+		Default("mock-logger.log").
 		Envar("MOCK_LOG_FILENAME").
 		String()
 
