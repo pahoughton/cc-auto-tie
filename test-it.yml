@@ -1,0 +1,21 @@
+# 2018-12-22 (cc) <paul4hough@gmail.com>
+#
+---
+desc: Create a validation scenario
+
+start-procs:
+  - prometheus
+  - alertmanager
+  - maul
+  - grok_exporter: mon mock-log-service
+  - proc_exporter: mon mock-log-service
+  - mock-ticket
+  - mock-log-service
+
+gen-alerts:
+  ticket:
+    - curl mls to gen warning
+  ansible:
+    - curl mls to gen error
+  emmet:
+    - kill mls
