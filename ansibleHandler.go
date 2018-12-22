@@ -7,16 +7,17 @@ import (
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
+
+	log "github.com/sirupsen/logrus"
 )
 
-func alertHandler(
+func ansibleHandler(
 	w http.ResponseWriter,
 	r *http.Request ) {
 
 	// inc metrics counter
-	alertsRecvd.Inc()
+	ansibleRecvd.Inc()
 
 	b, err := ioutil.ReadAll(r.Body)
 	if err != nil {

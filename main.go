@@ -4,12 +4,12 @@
 package main
 
 import (
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
+	log     "github.com/sirupsen/logrus"
 
 	prom  "github.com/prometheus/client_golang/prometheus"
 	proma "github.com/prometheus/client_golang/prometheus/promauto"
@@ -26,24 +26,42 @@ var (
 		Envar("MAUL_LISTEN").
 		String()
 
-	metSpace = "cca"
-	metSubSys = "maul"
-
-	alertsRecvd = proma.NewCounter(
+	ansibleRecvd = proma.NewCounter(
 		prom.CounterOpts{
-			Namespace: metSpace,
-			Subsystem: metSubSys,
-			Name:      "alert_received_total",
-			Help:      "number of alerts received",
+			Name:      "ansible_received_total",
+			Help:      "number of ansible tasks received",
+		})
+	emmetRecvd = proma.NewCounter(
+		prom.CounterOpts{
+			Name:      "emmet_received_total",
+			Help:      "number of emmet flows received",
+		})
+	ticketRecvd = proma.NewCounter(
+		prom.CounterOpts{
+			Name:      "ticket_received_total",
+			Help:      "number of tickets requests received",
+		})
+	unsupRecvd = proma.NewCounter(
+		prom.CounterOpts{
+			Name:      "unsupported_received_total",
+			Help:      "number of unsupported request received",
 		})
 )
 
 func main() {
-	app.Version("0.0.1")
+
+	app.Version("0.0.2")
 	kingpin.MustParse(app.Parse(os.Args[1:]))
 
+	log.SetLevel(log.TraceLevel)
+	log.Info("Starting ",os.Args[0])
+
+	http.HandleFunc("/ansible",ansibleHandler)
+	http.HandleFunc("/emmet",emmetHandler)
+	http.HandleFunc("/ticket",ticketHandler)
+	http.HandleFunc("/",defaultHandler)
+
 	http.Handle("/metrics", promh.Handler())
-	http.HandleFunc("/",alertHandler)
 
 	log.Fatal(http.ListenAndServe(*listenAddr,nil))
 }
