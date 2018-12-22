@@ -16,6 +16,14 @@ import (
 	promh "github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
+type AlertType uint32
+
+const (
+	AnsibleAlertType = iota
+	EmmetAlertType
+	TicketAlertType
+)
+
 var (
 	app = kingpin.New(filepath.Base(os.Args[0]),
 		"http dumper service")
@@ -25,6 +33,7 @@ var (
 		Default(":5001").
 		Envar("MAUL_LISTEN").
 		String()
+
 
 	ansibleRecvd = proma.NewCounter(
 		prom.CounterOpts{
@@ -46,6 +55,11 @@ var (
 			Name:      "unsupported_received_total",
 			Help:      "number of unsupported request received",
 		})
+	ticketCreated = proma.NewCounter(
+		prom.CounterOpts{
+			Name:      "ticket_created_total",
+			Help:      "number of tickets created",
+		})
 )
 
 func main() {
@@ -54,7 +68,7 @@ func main() {
 	kingpin.MustParse(app.Parse(os.Args[1:]))
 
 	log.SetLevel(log.TraceLevel)
-	log.Info("Starting ",os.Args[0])
+	log.Info(os.Args[0]," started")
 
 	http.HandleFunc("/ansible",ansibleHandler)
 	http.HandleFunc("/emmet",emmetHandler)

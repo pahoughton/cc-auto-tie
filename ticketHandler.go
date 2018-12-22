@@ -4,7 +4,8 @@
 package main
 
 import (
-	"fmt"
+	"bytes"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 
@@ -24,19 +25,14 @@ func ticketHandler(
 	}
 	defer r.Body.Close()
 
-	resp := fmt.Sprintf(`<!DOCTYPE html>
-<html>
-<body>
-<h2> Ticket Created </h2>
-<p><b> payload </b></p>
-<pre>
-%s
-</pre>
-</body>
-</html>
-`,b)
-	log.Info("ticket created")
-	log.Debug(resp)
-	w.WriteHeader(200)
-	w.Write([]byte(resp))
+	// debug - format json
+	var buf bytes.Buffer
+	if err := json.Indent(&buf, b, " >", "  "); err != nil {
+		panic(err)
+	}
+	log.Debug("req body\n",buf.String())
+
+	createTicket(TicketAlertType, b)
+
+	log.Debug("ticket req complete")
 }

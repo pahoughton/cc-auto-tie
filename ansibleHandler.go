@@ -16,7 +16,8 @@ func ansibleHandler(
 	w http.ResponseWriter,
 	r *http.Request ) {
 
-	// inc metrics counter
+	log.Debug("ansible recvd")
+
 	ansibleRecvd.Inc()
 
 	b, err := ioutil.ReadAll(r.Body)
@@ -24,9 +25,15 @@ func ansibleHandler(
 		panic(err)
 	}
 	defer r.Body.Close()
+
+	// debug - format json
 	var buf bytes.Buffer
 	if err := json.Indent(&buf, b, " >", "  "); err != nil {
 		panic(err)
 	}
-	log.Println(buf.String())
+	log.Debug("req body\n",buf.String())
+
+	createTicket(AnsibleAlertType, b)
+
+	log.Debug("ansible complete")
 }
