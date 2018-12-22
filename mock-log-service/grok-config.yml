@@ -1,0 +1,29 @@
+# 2018-12-22 (cc) <paul4hough@gmail.com>
+#
+---
+global:
+    config_version: 2
+
+server:
+    port: 9144
+
+input:
+    type: file
+    path: logger.log
+    readall: true
+    fail_on_missing_logfile: false
+    # poll_interval_seconds: 5 # should not be needed in most cases, see below
+
+grok:
+  additional_patterns:
+    - 'MSG msg="?([^"]+)"?'
+
+metrics:
+  - type: counter
+    name: mock_logger_error_total
+    help: number of error messages
+    match: 'level=error'
+  - type: counter
+    name: mock_logger_warn_total
+    help: number of warning messages
+    match: 'level=warning'
