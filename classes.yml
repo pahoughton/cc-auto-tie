@@ -35,13 +35,14 @@ knot: tie receiver(s) to actor(s)
   - receiver(s)
   - actor(s)
 
-actor: perform event driven action
-  - config
-  - do:
-    - the action
-    - params:
-      - event
-      - details
+actor:
+  - desc: perform event driven action
+    config:
+      do:
+        - the action
+        - params:
+            - event
+            - details
 
 rest actor:
 

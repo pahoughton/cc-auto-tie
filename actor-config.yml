@@ -2,25 +2,25 @@
 #
 ---
 
-name: george
-type: uri
-url: https://cc-auto-tie.s.f/george
-resp: did
+- name: george
+  type: uri
+  url: https://cc-auto-tie.s.f/george
+  resp: did
 
-name: mary
-type: rest
-url:
-  - http://cc-auto-tie.s.f/mary/val:
-    filters:
-      - 10.0.0.0/16
-      - herald.*.s.f
-      - mike.s.f
-    excludes:
-      - herald.*.prod.s.f
-    params:
-      - $node
-      - $event
-      - $...
-resp:
-  - did not:
-    - nitty gritty ...
+- name: mary
+  type: rest
+  url:
+    - http://cc-auto-tie.s.f/mary/val:
+        filters:
+          - 10.0.0.0/16
+          - herald.*.s.f
+          - mike.s.f
+        excludes:
+          - herald.*.prod.s.f
+        params:
+          - $node
+          - $event
+          - $...
+  resp:
+    - did not:
+        - nitty gritty ...
