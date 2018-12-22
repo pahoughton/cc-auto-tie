@@ -1,0 +1,23 @@
+# 2018-12-22 (cc) <paul4hough@gmail.com>
+#
+---
+groups:
+  - name: grok-logs
+    rules:
+      - alert: mock-log-errors
+        expr: increase(mock_logger_error_total[1m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+          response: emmet
+        annotations:
+          description: "has errors"
+
+      - alert: mock-log-warn
+        expr: increase(mock_logger_warn_total[1m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+          response: ansible
+        annotations:
+          description: "has warnings"

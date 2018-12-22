@@ -1,0 +1,24 @@
+# 2018-12-22 (cc) <paul4hough@gmail.com>
+#
+---
+
+global:
+  scrape_interval:     5s
+  evaluation_interval: 15s
+
+scrape_configs:
+
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - localhost:9090
+
+  - job_name: grok
+    static_configs:
+      - targets:
+          - localhost:9144
+        labels:
+          source: logfile
+
+rule_files:
+  - prom-rules-*.yml

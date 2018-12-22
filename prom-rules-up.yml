@@ -1,0 +1,13 @@
+# 2018-12-22 (cc) <paul4hough@gmail.com>
+#
+---
+groups:
+  - name: exporter.down
+    rules:
+      - alert: exporter-down
+        expr: up == 0
+        for: 5s
+        labels:
+          severity: critical
+        annotations:
+          description: "{{ $labels.service }} is down"
