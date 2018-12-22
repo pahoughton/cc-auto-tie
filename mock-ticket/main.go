@@ -23,8 +23,8 @@ var (
 
 	listenAddr = app.Flag("laddr","listen address").
 		Short('l').
-		Default(":5001").
-		Envar("MAUL_LISTEN").
+		Default(":5003").
+		Envar("MOCK_TICKET_LISTEN").
 		String()
 
 	unsupRecvd = proma.NewCounter(
