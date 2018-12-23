@@ -1,12 +1,15 @@
-# 2018-12-22 (cc) <paul4hough@gmail.com>
+# 2018-12-22 (cc) <paul4hough@gmail.com> -*- yaml -*-
 #
 ---
 groups:
   - name: procs
     rules:
-      - alert: thunderbird-down
-        expr: namedprocess_namegroup_num_procs{groupname="thunderbird",job="proc"} == 0
+      - alert: maul-down
+        expr: >-
+          namedprocess_namegroup_num_procs{
+            groupname="maul"}
+          == 0
         labels:
-          ansible: thunderbird-restart
+          ansible: maul-restart
         annotations:
-          description: "{{ $labels.groupname }} is down"
+          description: "\{\{ $labels.groupname \}\} is down"

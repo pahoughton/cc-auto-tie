@@ -1,11 +1,11 @@
-# 2018-12-22 (cc) <paul4hough@gmail.com>
+# 2018-12-22 (cc) <paul4hough@gmail.com> -*- yaml -*-
 #
 ---
 groups:
   - name: grok-logs
     rules:
       - alert: mock-log-errors
-        expr: increase(mock_logger_error_total[1m]) > 0
+        expr: mock_logger_error > 0
         for: 1m
         labels:
           emmet: fix-mock-logger
@@ -13,7 +13,7 @@ groups:
           description: "has errors"
 
       - alert: mock-log-warn
-        expr: increase(mock_logger_warn_total[1m]) > 0
+        expr: mock_logger_warn > 0
         for: 1m
         labels:
           ansible: restart-mock-logger

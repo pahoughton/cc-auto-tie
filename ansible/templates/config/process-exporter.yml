@@ -3,6 +3,6 @@
 ---
 process_names:
   - comm:
-      - emacs
-      - firefox
-      - thunderbird
+{% for proc in mon_proc_list %}
+      - {{ proc }}
+{% endfor %}

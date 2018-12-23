@@ -1,15 +1,15 @@
-# 2018-12-22 (cc) <paul4hough@gmail.com>
+# 2018-12-22 (cc) <paul4hough@gmail.com> -*- yaml -*-
 #
 ---
 global:
   config_version: 2
 
 server:
-  port: 9144
+  port: {{ port_grok_exp }}
 
 input:
   type: file
-  path: mock-logger.log
+  path: FIXME.log
   readall: true
   fail_on_missing_logfile: false
 
@@ -19,12 +19,12 @@ grok:
 
 metrics:
 
-  - type: counter
+  - type: gauge
     name: mock_logger_error_total
     help: number of error messages
     match: level=error
 
-  - type: counter
+  - type: gauge
     name: mock_logger_warn_total
     help: number of warning messages
     match: level=warning
