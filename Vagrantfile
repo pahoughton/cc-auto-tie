@@ -20,28 +20,28 @@ Vagrant.configure("2") do |config|
       vb.customize ['modifyvm', :id, '--usb', 'off']
     end
     bcfg.vm.provision "ansible" do |ansible|
-      ansible.playbook = "ansible/prom-node.yml"
+      ansible.playbook = "ansible/node-prom.yml"
     end
   end
 
-  # node = 'node'
-  # config.vm.define node do |bcfg|
-  #   bcfg.vm.box = "centos/7"
-  #   # bcfg.vm.box = "ubuntu/xenial64"
+  pgsql = 'pgsql'
+  config.vm.define pgsql do |bcfg|
+    bcfg.vm.box = "centos/7"
+    # bcfg.vm.box = "ubuntu/xenial64"
 
-  #   bcfg.vm.hostname = node
-  #   bcfg.vm.network    'private_network', ip: '10.0.0.5'
-  #   bcfg.vm.provider   'virtualbox' do |vb|
-  #     vb.name      = node
-  #     vb.cpus      = 1
-  #     vb.memory    = 1024
-  #     vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-  #     vb.customize ['modifyvm', :id, '--natdnspassdomain1', 'on']
-  #     vb.customize ['modifyvm', :id, '--usb', 'off']
-  #   end
-  #   bcfg.vm.provision "ansible" do |ansible|
-  #     ansible.playbook = "ansible/node.yml"
-  #   end
-  # end
+    bcfg.vm.hostname = pgsql
+    bcfg.vm.network    'private_network', ip: '10.0.0.6'
+    bcfg.vm.provider   'virtualbox' do |vb|
+      vb.name      = pgsql
+      vb.cpus      = 1
+      vb.memory    = 1024
+      vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+      vb.customize ['modifyvm', :id, '--natdnspassdomain1', 'on']
+      vb.customize ['modifyvm', :id, '--usb', 'off']
+    end
+    bcfg.vm.provision "ansible" do |ansible|
+      ansible.playbook = "ansible/node-pgsql.yml"
+    end
+  end
 
 end
