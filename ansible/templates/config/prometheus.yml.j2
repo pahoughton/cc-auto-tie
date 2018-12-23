@@ -27,7 +27,7 @@ scrape_configs:
     static_configs:
       - targets:
           - localhost:{{ port_node_exp }}
-          - {{ addr_node }}:{{ port_node_exp }}
+          - {{ addr_pgsql }}:{{ port_node_exp }}
 
   # - job_name: proc
   #   static_configs:
@@ -42,17 +42,17 @@ scrape_configs:
   - job_name: pgsql
     static_configs:
       - targets:
-          - {{ addr_node }}:{{ port_pgsql_exp }}
+          - {{ addr_pgsql }}:{{ port_pgsql_exp }}
 
-  - job_name: logger
-    static_configs:
-      - targets:
-          - {{ addr_node }}:{{ port_logr_exp }}
+  # - job_name: logger
+  #   static_configs:
+  #     - targets:
+  #         - {{ addr_node }}:{{ port_logr_exp }}
 
-  - job_name: ticket
-    static_configs:
-      - targets:
-          - {{ addr_node }}:{{ port_tckt_exp }}
+  # - job_name: ticket
+  #   static_configs:
+  #     - targets:
+  #         - {{ addr_node }}:{{ port_tckt_exp }}
 
 rule_files:
   - {{ remed_dir }}/config/prom-alerts/*.yml

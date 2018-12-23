@@ -1,37 +1,24 @@
-## cc-auto-tie
+## maul
 
-[![Test Build Status](https://travis-ci.org/pahoughton/cc-auto-tie.png)](https://travis-ci.org/pahoughton/cc-auto-tie)
+[![Test Build Status](https://travis-ci.org/pahoughton/maul.png)](https://travis-ci.org/pahoughton/maul)
 
-comfortably tying actors to receivers through data.
+prometheus alert distribution service
 
-## Code
-go
+## features
 
-## data
-yaml:
-- config
-- api payload
-- everything
-
-## Features
-
-Fun to play with
-data driven
-object oriented
-
-## Install
+## install
 
 Can't
 
-## Usage
+## usage
 
 You wouldn't want to.
 
-## Contribute
+## contribute
 
-[Github pahoughton/cc-auto-tie](https://github.com/pahoughton/cc-auto-tie)
+[Github pahoughton/maul](https://github.com/pahoughton/maul)
 
-## Licenses
+## licenses
 
 2018-12-05 (cc) <paul4hough@gmail.com>
 

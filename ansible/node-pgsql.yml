@@ -1,0 +1,10 @@
+# 2018-12-23 (cc) <paul4hough@gmail.com>
+#
+---
+- name: postgres node
+  hosts: pgsql
+  tasks:
+    - import_tasks: tasks-base.yml
+    - import_tasks: tasks-pgsql.yml
+    - import_tasks: tasks-mon-base.yml
+    - import_tasks: tasks-pgsql-mon.yml

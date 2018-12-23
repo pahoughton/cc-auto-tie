@@ -5,12 +5,14 @@ mon_user: monitor
 mon_dir: /opt/monitor
 mon_base_apps:
   - node_exporter
+
 prom_apps:
   - prometheus
   - alertmanager
-mon_proc_list:
+
 remed_user: remediate
 remed_dir: /opt/remediate
+
 port_prom: 9090
 port_amgr: 9093
 port_maul: 5001
@@ -20,5 +22,8 @@ port_grok_exp: 9144
 port_pgsql_exp: 9187
 port_logr_exp: 5002
 port_tckt_exp: 5003
+
 addr_remed: 10.0.0.5
-addr_node: 10.0.0.6
+addr_pgsql: 10.0.0.6
+
+pgexp_pg_pass: FIXME
