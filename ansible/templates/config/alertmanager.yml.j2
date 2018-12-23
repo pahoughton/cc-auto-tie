@@ -1,8 +1,8 @@
-# 2018-12-22 (cc) <paul4hough@gmail.com>
+# 2018-12-22 (cc) <paul4hough@gmail.com> -*- yaml -*-
 #
 ---
 global:
-  resolve_timeout: 5m
+  resolve_timeout: 15s
 
 route:
 
@@ -25,12 +25,12 @@ route:
 receivers:
   - name: 'ticket'
     webhook_configs:
-      - url: 'http://127.0.0.1:5001/ticket'
+      - url: 'http://{{ addr_remed }}:{{ port_maul }}/ticket'
 
   - name: 'ansible'
     webhook_configs:
-      - url: 'http://127.0.0.1:5001/ansible'
+      - url: 'http://{{ addr_remed }}:{{ port_maul }}/ansible'
 
   - name: 'emmet'
     webhook_configs:
-      - url: 'http://127.0.0.1:5001/emmet'
+      - url: 'http://{{ addr_remed }}:{{ port_maul }}/emmet'

@@ -1,0 +1,15 @@
+# 2018-12-23 (cc) <paul4hough@gmail.com> -*- yaml -*-
+#
+---
+groups:
+  - name: disk
+    rules:
+      - alert: disk-space
+        expr: >-
+          (node_filesystem_free_bytes * 100
+          / node_filesystem_size_bytes)
+          < 20
+        labels:
+          severity: critical
+        annotations:
+          description: "\{\{ $labels.mountpoint \}\} is over 80% full"

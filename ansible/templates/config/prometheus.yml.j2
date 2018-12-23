@@ -1,0 +1,65 @@
+# 2018-12-22 (cc) <paul4hough@gmail.com> -*- yaml -*-
+#
+---
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - localhost:{{ port_prom }}
+
+  - job_name: alertmgr
+    static_configs:
+      - targets:
+          - localhost:{{ port_amgr }}
+
+  - job_name: maul
+    static_configs:
+      - targets:
+          - localhost:5001
+
+  - job_name: node
+    static_configs:
+      - targets:
+          - localhost:{{ port_node_exp }}
+          - {{ addr_node }}:{{ port_node_exp }}
+
+  # - job_name: proc
+  #   static_configs:
+  #     - targets:
+  #         - {{ addr_node }}:{{ port_proc_exp }}
+
+  # - job_name: grok
+  #   static_configs:
+  #     - targets:
+  #         - {{ addr_node }}:{{ port_grok_exp }}
+
+  - job_name: pgsql
+    static_configs:
+      - targets:
+          - {{ addr_node }}:{{ port_pgsql_exp }}
+
+  - job_name: logger
+    static_configs:
+      - targets:
+          - {{ addr_node }}:{{ port_logr_exp }}
+
+  - job_name: ticket
+    static_configs:
+      - targets:
+          - {{ addr_node }}:{{ port_tckt_exp }}
+
+rule_files:
+  - {{ remed_dir }}/config/prom-alerts/*.yml
+
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets:
+            - 'localhost:{{ port_amgr }}'
