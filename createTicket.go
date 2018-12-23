@@ -6,12 +6,17 @@
 package main
 
 import (
+	"fmt"
+	"os"
+
 	log     "github.com/sirupsen/logrus"
 )
 
 func createTicket(at AlertType, rBody []byte) {
 
 	log.Debug("create ticket")
+
+	fmt.Fprintf(os.Stderr,"req body\n%s\n",string(rBody))
 
 	ticketCreated.Inc()
 

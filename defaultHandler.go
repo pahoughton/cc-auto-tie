@@ -4,11 +4,12 @@
 package main
 
 import (
-	//	"bytes"
-	//	"encoding/json"
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -26,6 +27,10 @@ func defaultHandler(
 	}
 	defer r.Body.Close()
 
+	var buf bytes.Buffer
+	if err := json.Indent(&buf, b, " >", "  "); err != nil {
+		panic(err)
+	}
 	resp := fmt.Sprintf(`<!DOCTYPE html>
 <html>
 <body>
@@ -47,9 +52,10 @@ func defaultHandler(
 		r.Host,
 		r.RequestURI,
 		r.Method,
-		b)
+		buf.String())
 
-	log.Warning("unsupported request\n",resp)
+	log.Warning("unsupported request")
+	fmt.Fprint(os.Stderr,resp)
 	w.WriteHeader(404)
 	w.Write([]byte(resp))
 }
