@@ -13,12 +13,47 @@ scrape_configs:
       - targets:
           - localhost:9090
 
+  - job_name: node
+    static_configs:
+      - targets:
+          - localhost:9100
+
+  - job_name: proc
+    static_configs:
+      - targets:
+          - localhost:9256
+
   - job_name: grok
     static_configs:
       - targets:
           - localhost:9144
-        labels:
-          source: logfile
+
+  - job_name: pgsql
+    static_configs:
+      - targets:
+          - localhost:9187
+
+  - job_name: alertmgr
+    static_configs:
+      - targets:
+          - localhost:9093
+
+  - job_name: cc-auto-tie
+    static_configs:
+      - targets:
+          - localhost:5001
+
+  - job_name: mock-logger
+    static_configs:
+      - targets:
+          - localhost:5002
 
 rule_files:
   - prom-rules-*.yml
+
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets:
+            - 'localhost:9093'

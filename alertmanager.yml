@@ -16,11 +16,11 @@ route:
 
   routes:
     - receiver: ansible
-      match:
-        response: ansible
+      match_re:
+        ansible: .*
     - receiver: emmet
-      match:
-        response: emmet
+      match_re:
+        emmet: .*
 
 receivers:
   - name: 'ticket'

@@ -9,7 +9,7 @@ server:
 
 input:
   type: file
-  path: logger.log
+  path: mock-logger.log
   readall: true
   fail_on_missing_logfile: false
 

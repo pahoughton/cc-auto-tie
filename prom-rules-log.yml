@@ -8,8 +8,7 @@ groups:
         expr: increase(mock_logger_error_total[1m]) > 0
         for: 1m
         labels:
-          severity: critical
-          response: emmet
+          emmet: fix-mock-logger
         annotations:
           description: "has errors"
 
@@ -17,7 +16,6 @@ groups:
         expr: increase(mock_logger_warn_total[1m]) > 0
         for: 1m
         labels:
-          severity: critical
-          response: ansible
+          ansible: restart-mock-logger
         annotations:
           description: "has warnings"
