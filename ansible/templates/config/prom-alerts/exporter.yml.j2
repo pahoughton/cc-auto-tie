@@ -7,6 +7,10 @@ groups:
       - alert: exporter-down
         expr: up == 0
         labels:
-          severity: critical
+          {% raw -%}
+          ansible: exporter-{{ $labels.service }}
+          {% endraw -%}
         annotations:
-          description: "\{\{ $labels.service \}\} is down"
+          {% raw %}
+          description: "{{ $labels.service }} is down"
+          {% endraw %}

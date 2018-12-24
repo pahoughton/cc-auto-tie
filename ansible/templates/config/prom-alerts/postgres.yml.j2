@@ -11,6 +11,8 @@ groups:
             state="active"}
           == 0
         labels:
-          ansible: restart-postgres
+          emmet: restart-postgres-flow
         annotations:
-          description: "\{\{ $labels.name \}\} is down"
+          {% raw %}
+          description: "{{ $labels.name }} is down"
+          {% endraw %}

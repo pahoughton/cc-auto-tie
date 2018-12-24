@@ -8,6 +8,13 @@
     home: "{{ remed_dir }}"
     system: true
 
+- name: add {{ remed_user }} group to vagrant user
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: "{{ remed_user }}"
+    append: true
+
 - name: create {{ remed_dir }} directories
   become: true
   become_user: "{{ remed_user }}"
@@ -16,6 +23,7 @@
     state: directory
     mode: 0775
   with_items:
+    - "{{ remed_dir }}"
     - "{{ remed_dir }}/bin"
     - "{{ remed_dir }}/config"
     - "{{ remed_dir }}/data"

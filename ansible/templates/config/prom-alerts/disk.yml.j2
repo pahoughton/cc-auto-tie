@@ -10,6 +10,10 @@ groups:
           / node_filesystem_size_bytes)
           < 20
         labels:
-          severity: critical
+          {% raw -%}
+          ansible: disk-space-{{ $labels.mountpoint }}
+          {% endraw -%}
         annotations:
-          description: "\{\{ $labels.mountpoint \}\} is over 80% full"
+          {% raw -%}
+          description: "{{ $labels.mountpoint }} is over 80% full"
+          {% endraw -%}

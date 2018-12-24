@@ -8,3 +8,4 @@
     - import_tasks: tasks-pgsql.yml
     - import_tasks: tasks-mon-base.yml
     - import_tasks: tasks-pgsql-mon.yml
+    - import_tasks: tasks-mocks.yml

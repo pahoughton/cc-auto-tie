@@ -41,6 +41,7 @@
     - prom-alerts/disk.yml
     - prom-alerts/exporter.yml
     - prom-alerts/postgres.yml
+    - prom-alerts/systemd.yml
 
 - name: enable and start monitor services
   become: true

@@ -20,10 +20,19 @@ port_node_exp: 9100
 port_proc_exp: 9256
 port_grok_exp: 9144
 port_pgsql_exp: 9187
-port_logr_exp: 5002
-port_tckt_exp: 5003
+port_logger: 5002
+port_ticket: 5003
 
 addr_remed: 10.0.0.5
 addr_pgsql: 10.0.0.6
 
+mock_services:
+  - mock-logger
+  - mock-ticket
+
 pgexp_pg_pass: FIXME
+
+systemd_alerts:
+  - cupsd
+  - mock-logger
+  - mock-ticket

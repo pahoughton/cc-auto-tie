@@ -12,4 +12,6 @@ groups:
         labels:
           ansible: maul-restart
         annotations:
-          description: "\{\{ $labels.groupname \}\} is down"
+          {% raw %}
+          description: "{{ $labels.groupname }} is down"
+          {% endraw %}

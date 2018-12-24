@@ -32,12 +32,10 @@ scrape_configs:
   # - job_name: proc
   #   static_configs:
   #     - targets:
-  #         - {{ addr_node }}:{{ port_proc_exp }}
 
   # - job_name: grok
   #   static_configs:
   #     - targets:
-  #         - {{ addr_node }}:{{ port_grok_exp }}
 
   - job_name: pgsql
     static_configs:
@@ -47,15 +45,9 @@ scrape_configs:
   # - job_name: logger
   #   static_configs:
   #     - targets:
-  #         - {{ addr_node }}:{{ port_logr_exp }}
-
-  # - job_name: ticket
-  #   static_configs:
-  #     - targets:
-  #         - {{ addr_node }}:{{ port_tckt_exp }}
 
 rule_files:
-  - {{ remed_dir }}/config/prom-alerts/*.yml
+  - {{ mon_dir }}/config/prom-alerts/*.yml
 
 alerting:
   alertmanagers:
