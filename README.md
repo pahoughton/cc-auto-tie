@@ -1,18 +1,39 @@
 ## maul
 
-[![Test Build Status](https://travis-ci.org/pahoughton/maul.png)](https://travis-ci.org/pahoughton/maul)
-
 prometheus alert distribution service
+
+## validate
+
+The following binaries need to exist in $GOPATH/bin
+
+- prometheus
+- alertmanager
+- node_exporter
+- postgres_exporter
+
+```
+go get github.com/pahoughton/maul
+cd $GOPATH/src/github.com/pahoughton/maul
+go get
+go build
+vagrant up
+```
 
 ## features
 
+- run ansible playbooks to remediate alerts
+- generate tickets for alerts
+
 ## install
 
-Can't
+put 'maul' wherever you want to
 
 ## usage
 
-You wouldn't want to.
+```
+maul --laddr :5001
+curl localhost:5001/metrics
+```
 
 ## contribute
 
