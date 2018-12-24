@@ -5,7 +5,7 @@
   become: true
   become_user: "{{ mon_user }}"
   copy:
-    src: "{{ lookup('env','GOPATH') + '/bin/' + item }}"
+    src: "{{ item }}"
     dest: "{{ mon_dir }}/bin/{{ item }}"
     mode: 0775
   loop: "{{ prom_apps }}"
