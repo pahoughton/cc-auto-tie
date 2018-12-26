@@ -12,25 +12,9 @@ route:
   group_wait: 10s
   group_interval: 10s
   repeat_interval: 10m
-  receiver: 'ticket'
-
-  routes:
-    - receiver: ansible
-      match_re:
-        ansible: .*
-    - receiver: emmet
-      match_re:
-        emmet: .*
+  receiver: 'agate'
 
 receivers:
-  - name: 'ticket'
+  - name: 'agate'
     webhook_configs:
-      - url: 'http://{{ addr_remed }}:{{ port_maul }}/ticket'
-
-  - name: 'ansible'
-    webhook_configs:
-      - url: 'http://{{ addr_remed }}:{{ port_maul }}/ansible'
-
-  - name: 'emmet'
-    webhook_configs:
-      - url: 'http://{{ addr_remed }}:{{ port_maul }}/emmet'
+      - url: 'http://{{ addr_remed }}:{{ port_agate }}/alerts'

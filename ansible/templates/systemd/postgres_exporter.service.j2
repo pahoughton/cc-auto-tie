@@ -8,7 +8,6 @@ After=network-online.target
 
 [Service]
 User={{ mon_user }}
-Restart=on-failure
 Environment=DATA_SOURCE_NAME=postgresql://postgres_exporter:{{ pgexp_pg_pass }}@localhost:5432/postgres?sslmode=disable
 ExecStart={{ mon_dir }}/bin/postgres_exporter
 

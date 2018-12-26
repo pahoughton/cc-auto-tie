@@ -6,5 +6,5 @@
   tasks:
     - import_tasks: tasks-base.yml
     - import_tasks: tasks-mon-base.yml
-    - import_tasks: tasks-prom.yml
     - import_tasks: tasks-remed.yml
+    - import_tasks: tasks-prom.yml

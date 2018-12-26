@@ -6,11 +6,12 @@ groups:
     rules:
       - alert: exporter-down
         expr: up == 0
+        for: 15s
         labels:
           {% raw -%}
-          ansible: exporter-{{ $labels.service }}
-          {% endraw -%}
+          ansible: exporter-{{ $labels.job }}
+        {% endraw -%}
         annotations:
-          {% raw %}
-          description: "{{ $labels.service }} is down"
-          {% endraw %}
+          {% raw -%}
+          description: "{{ $labels.job }} is down"
+          {%-  endraw %}

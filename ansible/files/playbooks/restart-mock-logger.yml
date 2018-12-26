@@ -1,0 +1,11 @@
+# 2018-12-25 (cc) <paul4hough@gmail.com>
+#
+---
+- name: restart mock-logger playbook
+  hosts: all
+  tasks:
+    - name: restart mock-logger service
+      become: true
+      service:
+        name: mock-logger
+        state: started

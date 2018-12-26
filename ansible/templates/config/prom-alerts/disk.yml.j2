@@ -12,8 +12,8 @@ groups:
         labels:
           {% raw -%}
           ansible: disk-space-{{ $labels.mountpoint }}
-          {% endraw -%}
+        {% endraw -%}
         annotations:
           {% raw -%}
           description: "{{ $labels.mountpoint }} is over 80% full"
-          {% endraw -%}
+          {%- endraw %}

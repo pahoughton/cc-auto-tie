@@ -1,6 +1,26 @@
 ## maul
 
-prometheus alert distribution service
+Provides computer system monitoring, fault notification and
+interim remediation.
+
+Final remediation is handled by process improvements
+
+- application iteration
+- automated scaling
+- process relocation for hardware faults
+
+iterative automation
+
+embrace the evolutionary process - univeral law
+
+replace toil and waste with learning and creativity
+
+dry kiss
+
+dot-dash
+
+
+- agate - prometheus alert distribution service
 
 ## validate
 
@@ -20,6 +40,7 @@ vagrant up
 ```
 
 ## features
+
 
 - run ansible playbooks to remediate alerts
 - generate tickets for alerts

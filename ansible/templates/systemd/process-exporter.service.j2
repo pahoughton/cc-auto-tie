@@ -8,7 +8,6 @@ After=network-online.target
 
 [Service]
 User={{ mon_user }}
-Restart=on-failure
 ExecStart={{ mon_dir }}/bin/process-exporter \
 	     --web.listen-address 0.0.0.0:{{ port_proc_exp }}
 

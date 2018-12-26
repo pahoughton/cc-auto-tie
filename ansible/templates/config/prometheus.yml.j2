@@ -18,10 +18,10 @@ scrape_configs:
       - targets:
           - localhost:{{ port_amgr }}
 
-  - job_name: maul
+  - job_name: agate
     static_configs:
       - targets:
-          - localhost:5001
+          - localhost:{{ port_agate }}
 
   - job_name: node
     static_configs:

@@ -1,20 +1,6 @@
 # 2018-12-23 (cc) <paul4hough@gmail.com>
 #
 ---
-- name: create {{ remed_user }} user
-  become: true
-  user:
-    name: "{{ remed_user }}"
-    home: "{{ remed_dir }}"
-    system: true
-
-- name: add {{ remed_user }} group to vagrant user
-  become: true
-  user:
-    name: "{{ ansible_user_id }}"
-    groups: "{{ remed_user }}"
-    append: true
-
 - name: create {{ remed_dir }} directories
   become: true
   become_user: "{{ remed_user }}"
@@ -26,26 +12,53 @@
     - "{{ remed_dir }}"
     - "{{ remed_dir }}/bin"
     - "{{ remed_dir }}/config"
-    - "{{ remed_dir }}/data"
+    - "{{ remed_dir }}/playbooks"
+    - "{{ remed_dir }}/scripts"
 
-- name: upload maul binary
+- name: install ansible
+  become: true
+  package:
+    name: ansible
+    state: present
+
+- name: upload agate binary
   become: true
   become_user: "{{ remed_user }}"
   copy:
-    src: maul
-    dest: "{{ remed_dir }}/bin/maul"
+    src: agate
+    dest: "{{ remed_dir }}/bin/agate"
     mode: 0775
 
-- name: install maul service file
+- name: upload scripts
+  become: true
+  become_user: "{{ remed_user }}"
+  copy:
+    src: "{{ item }}"
+    dest: "{{ remed_dir }}"
+    mode: 0775
+  with_items:
+    - scripts/remed-test-script
+
+- name: upload playbooks
+  become: true
+  become_user: "{{ remed_user }}"
+  copy:
+    src: "{{ item }}"
+    dest: "{{ remed_dir }}"
+    mode: 0775
+  with_fileglob:
+    - playbooks/*.yml
+
+- name: install agate service file
   become: true
   template:
-    src: systemd/maul.service.j2
-    dest: /etc/systemd/system/maul.service
+    src: systemd/agate.service.j2
+    dest: /etc/systemd/system/agate.service
 
-- name: enable and start maul service
+- name: enable and start agate service
   become: true
   systemd:
-    name: maul
+    name: agate
     state: started
     enabled: true
     daemon_reload: true

@@ -8,7 +8,6 @@ After=network-online.target
 
 [Service]
 User={{ mon_user }}
-Restart=on-failure
 ExecStart={{ mon_dir }}/bin/grok_exporter \
 	     -config {{ mon_dir }}/config/grok_exporter.yml
 

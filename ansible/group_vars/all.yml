@@ -15,7 +15,7 @@ remed_dir: /opt/remediate
 
 port_prom: 9090
 port_amgr: 9093
-port_maul: 5001
+port_agate: 5001
 port_node_exp: 9100
 port_proc_exp: 9256
 port_grok_exp: 9144

@@ -8,7 +8,6 @@ After=network-online.target
 
 [Service]
 User={{ mon_user }}
-Restart=on-failure
 ExecStart={{ mon_dir }}/bin/node_exporter \
 	     --web.listen-address ":{{ port_node_exp }}" \
 	     --collector.systemd

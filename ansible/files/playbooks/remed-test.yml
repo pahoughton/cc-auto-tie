@@ -1,0 +1,12 @@
+# 2018-12-25 (cc) <paul4hough@gmail.com>
+#
+---
+- name: remed-test playbook
+  hosts: all
+  tasks:
+    - name: create file in /tmp
+      file:
+        dest: /tmp/remed-test-play
+        content: |
+          remediation test file
+        mode: 0666
