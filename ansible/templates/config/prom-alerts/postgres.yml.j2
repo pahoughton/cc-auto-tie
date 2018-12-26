@@ -12,6 +12,7 @@ groups:
           == 0
         labels:
           script: remed-test-script
+          script_arg: testarg
         annotations:
           {% raw %}
           description: "{{ $labels.name }} is down"

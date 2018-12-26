@@ -25,6 +25,7 @@ port_ticket: 5003
 
 addr_remed: 10.0.0.5
 addr_pgsql: 10.0.0.6
+addr_ticket: 10.0.0.6
 
 mock_services:
   - mock-logger

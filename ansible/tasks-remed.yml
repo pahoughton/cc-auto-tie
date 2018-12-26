@@ -34,7 +34,7 @@
   become_user: "{{ remed_user }}"
   copy:
     src: "{{ item }}"
-    dest: "{{ remed_dir }}"
+    dest: "{{ remed_dir }}/scripts"
     mode: 0775
   with_items:
     - scripts/remed-test-script
@@ -44,8 +44,8 @@
   become_user: "{{ remed_user }}"
   copy:
     src: "{{ item }}"
-    dest: "{{ remed_dir }}"
-    mode: 0775
+    dest: "{{ remed_dir }}/playbooks"
+    mode: 0664
   with_fileglob:
     - playbooks/*.yml
 

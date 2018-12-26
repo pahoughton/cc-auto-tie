@@ -11,7 +11,8 @@ groups:
           < 20
         labels:
           {% raw -%}
-          ansible: disk-space-{{ $labels.mountpoint }}
+          ansible: disk-space
+          ansible_vars: mount_point={{ $labels.mountpoint }}
         {% endraw -%}
         annotations:
           {% raw -%}

@@ -10,7 +10,8 @@ User={{ remed_user }}
 ExecStart={{ remed_dir }}/bin/agate \
 	     --listen-addr ":{{ port_agate }}" \
 	     --script-dir {{ remed_dir }}/scripts \
-	     --playbook-dir {{ remed_dir }}/playbooks
+	     --playbook-dir {{ remed_dir }}/playbooks \
+	     --ticket-url http://{{ addr_ticket }}:{{ port_ticket }}/ticket
 
 [Install]
 WantedBy=multi-user.target
