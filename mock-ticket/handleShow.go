@@ -34,7 +34,8 @@ func handleShow(
 		} else {
 			tdata = "<table>\n"
 			for k, v := range  tckMap {
-				tdata += fmt.Sprintf("<tr><td>%s:</td><td>%s</td><tr>\n",k,v)
+				tdata += fmt.Sprintf("<tr><td>%s:</td>" +
+					"<td><pre>%s</pre></td><tr>\n",k,v)
 			}
 			tdata += "</table>\n"
 		}
