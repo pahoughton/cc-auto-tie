@@ -27,6 +27,8 @@ var (
 		Envar("MOCK_TICKET_LISTEN").
 		String()
 
+	tickets []string
+
 	unsupRecvd = proma.NewCounter(
 		prom.CounterOpts{
 			Name:      "unsupported_received_total",
@@ -44,10 +46,15 @@ func main() {
 	kingpin.MustParse(app.Parse(os.Args[1:]))
 
 	log.SetLevel(log.TraceLevel)
-	log.Info("Starting ",os.Args[0])
+	log.Info("Starting ",os.Args[0],"listing to",*listenAddr)
+
+	tickets = append(tickets,`{"title":"Dummy One","desc":"not real"}`)
+	tickets = append(tickets,`{"title":"Dummy Two","desc":"not real 2"}`)
 
 	http.Handle("/metrics", promh.Handler())
-	http.HandleFunc("/ticket",ticketHandler)
-	http.HandleFunc("/",defaultHandler)
+	http.HandleFunc("/list",handleList)
+	http.HandleFunc("/show",handleShow)
+	http.HandleFunc("/ticket",handleTicket)
+	http.HandleFunc("/",handleDefault)
 	log.Fatal(http.ListenAndServe(*listenAddr,nil))
 }
