@@ -11,7 +11,7 @@ ExecStart={{ remed_dir }}/bin/agate \
 	     --listen-addr ":{{ port_agate }}" \
 	     --script-dir {{ remed_dir }}/scripts \
 	     --playbook-dir {{ remed_dir }}/playbooks \
-	     --ticket-url http://{{ addr_ticket }}:{{ port_ticket }}/ticket
+	     --ticket-mock-url http://{{ addr_ticket }}:{{ port_ticket }}/ticket
 
 [Install]
 WantedBy=multi-user.target

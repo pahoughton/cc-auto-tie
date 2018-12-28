@@ -1,6 +1,22 @@
 # 2018-12-23 (cc) <paul4hough@gmail.com>
 #
 ---
+- name: create {{ remed_dir }}/.ssh dir
+  become: true
+  become_user: "{{ remed_user }}"
+  file:
+    name: "{{ remed_dir }}/.ssh"
+    state: directory
+    mode: 0700
+
+- name: no hostkey checking for {{ remed_user }}
+  become: true
+  become_user: "{{ remed_user }}"
+  copy:
+    dest: "{{ remed_dir }}/.ssh/config"
+    content: StrictHostKeyChecking no
+    mode: 0700
+
 - name: create {{ remed_dir }} directories
   become: true
   become_user: "{{ remed_user }}"
